@@ -70,3 +70,13 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+.vsconfig
+.vscode/
+Icon?
+.DS_Store
+.idea/
+.vs/
+*.7z
+.fake
+__MACOSX/

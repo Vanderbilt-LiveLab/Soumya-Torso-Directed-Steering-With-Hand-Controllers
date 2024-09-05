@@ -1,5 +1,14 @@
 // The HeadsetPositionFollowerByCharacter(), CapsuleFollowHeadSet(), and CheckIfGrounded() are inspired by the tutorials of "Valem" [https://www.youtube.com/watch?v=5NRTT8Tbmoc]. However, the functions have been tweaked to make them work with the current version of XR Interaction Toolkit, the New Unity Input System, and to support the current locomotion method.
 
+// Procedure to move:-
+// The "Trigger Button" of your dominant hand controller would allow you to move forward in the virtual environment.
+// You need to hold the non-dominant hand controller on the side of your body, as this controller would act as your body tracker.
+// You need to physically rotate towards your intended movement direction to move towards a particular direction in the virtual scene.
+// If you are deflected in the scene because of your non-dominant hand movement, you can recalibrate it by -
+// Resting your non-dominant hand once again on your side first.
+// Then press the "Primary Button" of the non-dominant hand controller to recalibrate the movement direction.
+// Once the recalibration is done, you will be able to move in your intended direction once again!!!
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;

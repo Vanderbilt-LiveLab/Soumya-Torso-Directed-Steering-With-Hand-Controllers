@@ -97,7 +97,7 @@
     },
     "com.unity.ai.navigation": {
       "version": "2.0.4",
-      "depth": 2,
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.ai": "1.0.0"
@@ -160,7 +160,7 @@
     },
     "com.unity.inputsystem": {
       "version": "1.11.2",
-      "depth": 1,
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.uielements": "1.0.0"

@@ -979,7 +979,7 @@
                 {
                     "name": "Primary",
                     "type": "Button",
-                    "id": "b0d484e8-a8d8-4326-80d6-824390c8e06a",
+                    "id": "6a429c44-0404-4ecb-b46c-05e53e6ed9a7",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -988,7 +988,7 @@
                 {
                     "name": "Secondary",
                     "type": "Button",
-                    "id": "0eb82777-b615-4bce-b2a8-c38a47fdc237",
+                    "id": "49dd0287-b4a1-45ce-b6b6-8c8196c4c607",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -1284,7 +1284,7 @@
                 },
                 {
                     "name": "",
-                    "id": "6c795269-d5c3-40b0-ad94-c2e8a5d2f8b1",
+                    "id": "7314242f-5138-4377-92d5-3f36f52fd79a",
                     "path": "<XRController>{LeftHand}/{PrimaryButton}",
                     "interactions": "",
                     "processors": "",
@@ -1295,8 +1295,30 @@
                 },
                 {
                     "name": "",
-                    "id": "c5e3bb21-174a-4432-98f9-9ee45b6d8f77",
+                    "id": "9cb339d4-4da7-473a-998f-7d4c4158165c",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a8082344-2a4c-4286-aa8c-c1b543b0d745",
                     "path": "<XRController>{LeftHand}/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1778d75d-60cd-4d34-8086-bbc82fd5b3ae",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -2090,7 +2112,7 @@
                 {
                     "name": "Primary",
                     "type": "Button",
-                    "id": "fe1cb6c2-8521-4b0e-9ead-a762403828d9",
+                    "id": "a0f3586b-1926-43e1-a039-15933e75431a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -2099,7 +2121,7 @@
                 {
                     "name": "Secondary",
                     "type": "Button",
-                    "id": "391ab8af-f26e-451e-8236-91ba2bbed8d3",
+                    "id": "a52cf5a5-4eff-4e6a-bb4b-3ff1fa26306a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -2395,7 +2417,7 @@
                 },
                 {
                     "name": "",
-                    "id": "b55179a5-c29e-4e4c-8d11-967044ac2567",
+                    "id": "31ce57dd-8d6f-46e8-88c7-127208647f84",
                     "path": "<XRController>{RightHand}/{PrimaryButton}",
                     "interactions": "",
                     "processors": "",
@@ -2406,8 +2428,30 @@
                 },
                 {
                     "name": "",
-                    "id": "44174aae-978d-41e5-8526-6a9b61f8702b",
+                    "id": "a7063a1b-35cb-473e-bbba-d6644f964f26",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9c434872-59bd-4e8a-9e56-0f3d91739228",
                     "path": "<XRController>{RightHand}/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "491254f8-30c4-43d1-8a2b-ae88d26b942d",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -3391,6 +3435,74 @@
                     "action": "Spawn Object",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Keyboard Essentials",
+            "id": "4cbcd034-4c0c-452b-9e43-0656a61689d1",
+            "actions": [
+                {
+                    "name": "Space",
+                    "type": "Button",
+                    "id": "f3727e54-511e-4c83-856a-c937a1d42b34",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Left Shift",
+                    "type": "Button",
+                    "id": "0aa32182-948a-439a-8eb2-aada5f46dc47",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Tab",
+                    "type": "Button",
+                    "id": "8d97cf65-fc95-470c-9f19-876be93d9fe4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6fd4e8aa-018a-4de1-a362-2e25c048a5a9",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Space",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c7095a76-8e17-4c25-88c9-b3569828033a",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Shift",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7466b2c4-9759-491f-b612-51becef63b5a",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

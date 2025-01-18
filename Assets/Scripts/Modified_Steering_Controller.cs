@@ -11,7 +11,7 @@
 
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.InputSystem;
 using Unity.XR.CoreUtils;
 
@@ -99,12 +99,12 @@ public class Modified_Steering_Controller : MonoBehaviour
 
     private void PostButtonClicked() // This function will turn off the laser rays emanating from the controllers after selecting the UI buttons in the scene.
     {
-        LeftController.gameObject.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor>().enabled = false;
+        LeftController.gameObject.GetComponent<XRRayInteractor>().enabled = false;
         LeftController.gameObject.GetComponent<LineRenderer>().enabled = false;
-        LeftController.gameObject.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.Visuals.XRInteractorLineVisual>().enabled = false;
-        RightController.gameObject.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor>().enabled = false;
+        LeftController.gameObject.GetComponent<XRInteractorLineVisual>().enabled = false;
+        RightController.gameObject.GetComponent<XRRayInteractor>().enabled = false;
         RightController.gameObject.GetComponent<LineRenderer>().enabled = false;
-        RightController.gameObject.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.Visuals.XRInteractorLineVisual>().enabled = false;
+        RightController.gameObject.GetComponent<XRInteractorLineVisual>().enabled = false;
         Destroy(Canvas);
         Destroy(EventSystem);
     }

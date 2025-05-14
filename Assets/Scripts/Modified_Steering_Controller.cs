@@ -20,7 +20,7 @@ public class Modified_Steering_Controller : MonoBehaviour
 {
     private int Which_Handed_Person;
     private CharacterController character;
-    public float speed = 1;
+    public float speed = 1; // A constant speed of 1 m/s is used in our study.
     private float gravity = -9.81f;
     private float fallingSpeed;
     public LayerMask groundLayer; // You can create a Physics Layer called 'Ground' and assign the layer to the objects where the user can steer. Then choose 'Ground' from the dropdown menu of this variable on the Unity Editor. Otherwise, you can simply choose 'Everything' from the dropdown menu of this variable in the inspector! This layer is to allow sphere casting in every frame by the application to check if the user is on the ground or not. 
@@ -30,8 +30,8 @@ public class Modified_Steering_Controller : MonoBehaviour
     private Quaternion Yaw = Quaternion.Euler(Vector3.zero);
     private float previous_y_value = 0, yRotHand = 0, value = 0;
     private Vector3 direction, groundPos, sphereCastHitPoint;
-    public GameObject MainCamera, LeftController, RightController, Canvas, EventSystem, GroundContact; // Assign the 'Main Camera', 'Left Controller', and 'Right Controller' Game Objects under the XROrigin Game Objects, to the respective Game Objects of these script. Create a UI Text Mesh Pro Text Game Object, and two UI Text Mesh Pro Buttons in the scene. The Text field can ask users - "You are a...". One of the button will show - "Right-Handed Person", and the other one will show - "Left-Handed Person". Assign the "RightHandActivated()" and "LeftHandActivated()" functions to the OnClick() event of the respective buttons to allow the application know the dominant and non-dominant hand controllers of the user. These UI elements will generate a 'Canvas' and an 'EventSystem' Game Objects. Assign those two Game Objects to the respective Game Objects of this script. 
-    public InputActionProperty leftActivateAction, rightActivateAction, leftPrimaryButton, rightPrimaryButton;
+    public GameObject MainCamera, LeftController, RightController, Canvas, EventSystem, GroundContact; // Assign the 'Main Camera', 'Left Controller', and 'Right Controller' Game Objects under the XROrigin Game Object, to the respective Game Objects of these script. Create a UI Text Mesh Pro Text Game Object, and two UI Text Mesh Pro Buttons in the scene. The Text field can ask users - "You are a...". One of the button will show - "Right-Handed Person", and the other one will show - "Left-Handed Person". Assign the "RightHandActivated()" and "LeftHandActivated()" functions to the OnClick() event of the respective buttons to allow the application know the dominant and non-dominant hand controllers of the user. These UI elements will generate a 'Canvas' and an 'EventSystem' Game Objects. Assign those two Game Objects to the respective Game Objects of this script. 
+    public InputActionProperty leftActivateAction, rightActivateAction, leftPrimaryButton, rightPrimaryButton; // Assign the "Activate" (trigger buttons) and "Primary Button" Input actions (A or X buttons) of the Left and Right Hand Controllers to the respective InputActionProperty variables of this script.
     private XROrigin xROrigin;
 
     // Start is called before the first frame update
@@ -69,7 +69,7 @@ public class Modified_Steering_Controller : MonoBehaviour
         }
         else
         {
-            if (UI_Interaction_Completed) // After interacting with the UI buttons, the Steering method will start
+            if (UI_Interaction_Completed) // The Steering starts after interacting with the UI
             {
                 RecalibrationActivator();
                 Main_Steering();
@@ -82,10 +82,10 @@ public class Modified_Steering_Controller : MonoBehaviour
     public void RightHandActivated() // This function is attached to the 'Right-handed Person' UI button in the scene.
     {
         Which_Handed_Person = 1;
-        PostButtonClicked(); // Turn off the laser pointers after selecting the correct button for which handed person you are. Also, it will destroy the canvas and the eventsystem so that they will not be visible in the scene.
-        Main_Steering(); // This function is called to get the current global Y Rotation angle of the non-dominant Hand Controller.
-        Main_Calibrator(); // We will assume that the user already placed their non-dominant hand at a comfortable place (most likely on their sides close to their waists). So, the initial calibration will be performed to calculate the heading direction of the user from the next frame.
-        UI_Interaction_Completed = true; // This variable will allow the application to know that the steering calculation will be started from the next frame.
+        PostButtonClicked(); // Turns off the laser pointers of the controllers. Also, it will destroy the Canvas and the EventSystem so that they will not be visible in the scene any more.
+        Main_Steering(); // Gets the current global Y Rotation angle of the non-dominant Hand Controller.
+        Main_Calibrator(); // We assumes that the user has already placed their non-dominant hand at a comfortable place (most likely on their sides close to their waists). So, the initial calibration will be performed to calculate the heading direction of the user.
+        UI_Interaction_Completed = true; // This variable lets the application know that the steering calculation will be starting from the next frame.
     }
 
     public void LeftHandActivated() // This function is attached to the 'Left-handed Person' UI button in the scene.
@@ -97,7 +97,7 @@ public class Modified_Steering_Controller : MonoBehaviour
         UI_Interaction_Completed = true;
     }
 
-    private void PostButtonClicked() // This function will turn off the laser rays emanating from the controllers after selecting the UI buttons in the scene.
+    private void PostButtonClicked() // This function turns off the laser rays emanating from the controllers after selecting the UI buttons in the scene.
     {
         LeftController.gameObject.GetComponent<XRRayInteractor>().enabled = false;
         LeftController.gameObject.GetComponent<LineRenderer>().enabled = false;
@@ -109,11 +109,11 @@ public class Modified_Steering_Controller : MonoBehaviour
         Destroy(EventSystem);
     }
 
-    private void Main_Steering() // This function collects the current global Y rotation angle of the non-dominant hand controller, and the amount of the trigger button pressed in the current frame.
+    private void Main_Steering() // This function collects the current global Y rotation angle of the non-dominant hand controller, and how much the trigger button is pressed in the current frame.
     {
-        if (Which_Handed_Person == 1) // This part is checking which is the active hand of the participant. So, the other hand will be used as the body tracker. If this variable value is 1, then the person is a right-handed person, or else he/she is a left-handed person. So, in the first case, the body tracker would be left-hand tracker, and for the second case, it would be the right hand tracker!
+        if (Which_Handed_Person == 1) // If this variable value is 1, then the person is a right-handed person, or else he/she is a left-handed person. In the first case, the body tracker would be left-hand tracker, and for the second case, it would be the right hand tracker.
         {
-            inputButtonValue = rightActivateAction.action.ReadValue<float>(); // We chose the amount of the trigger button that was pressed. If the value was greater than 0, it meant the trigger button was pressed by some amount. This triggered the continuous steering movement at 1 m/s (or the speed set earlier).
+            inputButtonValue = rightActivateAction.action.ReadValue<float>(); // This variable determines how much the trigger button is pressed. If the value is greater than 0, it means the trigger button is pressed by some amount. This triggers the continuous steering movement.
             yRotHand = LeftController.transform.eulerAngles.y; // This is the non-dominant hand controller's global Y rotation angle.
         }
         else if (Which_Handed_Person == 2)
@@ -123,7 +123,7 @@ public class Modified_Steering_Controller : MonoBehaviour
         }
     }
 
-    private void Main_Calibrator() // Whenever you need to use the calibration button of the body tracker to recalibrate, or whenever you want to start a new trial, you need to call this function to recalibrate the orientation of the user!
+    private void Main_Calibrator() // This function calls the recalibration mechanism whenever a new trial is started or whenever the participants performs the recalibration intentionally.
     {
         GameObject xa = new GameObject();
         Vector3 pos = MainCamera.transform.position;
@@ -133,7 +133,6 @@ public class Modified_Steering_Controller : MonoBehaviour
         rot.z = 0;
         xa.transform.position = pos;
         xa.transform.rotation = Quaternion.Euler(rot); // This new Game Object gets the global x and z positions and global y rotation angle of the Main Camera. 
-
         Vector3 rot1 = xa.transform.forward;
         Vector3 rot2 = this.transform.forward; // Here 'this' means the XROrigin because the script is attached to this Game Object. We need to move the entire XRORigin while steering. So, we considered this Game Object. 
         float angularDifference = Vector3.Angle(rot2, rot1);
@@ -162,7 +161,7 @@ public class Modified_Steering_Controller : MonoBehaviour
             Main_Calibrator();
     }
 
-    private void CharacterMover() // This function is responsible for moving the user in the calibrated heading direction.
+    private void CharacterMover() // This function moves the user in the calibrated heading direction.
     {
         if (inputButtonValue > 0)
         {
@@ -181,7 +180,7 @@ public class Modified_Steering_Controller : MonoBehaviour
         }
     }
 
-    private void HeadsetPositionFollowerByCharacter() // This function and all the functions mentioned innside it allows the CharacterController to follow the headset's position in the scene.
+    private void HeadsetPositionFollowerByCharacter() // This function and the other functions mentioned inside it allow the CharacterController to follow the headset's position in the scene.
     {
         CapsuleFollowHeadSet();
         //gravity
@@ -210,7 +209,6 @@ public class Modified_Steering_Controller : MonoBehaviour
 
     private bool CheckIfGrounded()
     {
-        // tells us if on ground
         Vector3 rayStart = transform.TransformPoint(character.center);
         float rayLength = character.center.y + 0.01f;
         bool hasHit = Physics.SphereCast(rayStart, character.radius, Vector3.down, out RaycastHit hitInfo, rayLength, groundLayer);
